@@ -45,16 +45,16 @@ vector<int> extract_shortest_path(const vector<int>& /*distances*/, const vector
 
 
 void print_path(const vector<int>& v, int total) {
-    if (path.empty()) {
+    if (v.empty()) {
         std::cout << "No path found\n";
         return;
     }
     
     std::cout << "\nTotal cost is " << total << "\n";
     
-    for (size_t i = 0; i < path.size(); ++i) {
+    for (size_t i = 0; i < v.size(); ++i) {
         if (i > 0) std::cout << " -> ";
-        std::cout << path[i];
+        std::cout << v[i];
     }
     std::cout << "\n";
 }
