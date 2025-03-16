@@ -18,6 +18,7 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
         dif_count++;
         if (dif_count > d) return false;
     }
+    return dif_count == d;
 }
 
 
@@ -67,7 +68,7 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
 void load_words(set<string> & word_list, const string& file_name) {
     ifstream file(file_name);
     if (!file) {
-        cerr << "unable to open file "endl;
+        cerr << "unable to open file "<<endl;
         return;
     }
     string word;
@@ -86,10 +87,10 @@ void print_word_ladder(const vector<string>& ladder) {
     }
 
     for (size_t i = 0; i < ladder.size(); i++) {
-        cout << ladder[i];
+        cout << ladder[i] << " ";
     }
-    cout << endl;
 }
+
 
 #define my_assert(e) { cout << #e << ((e) ? " passed" : " failed") << endl; }
 void verify_word_ladder() {

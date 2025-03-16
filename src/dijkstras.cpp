@@ -1,11 +1,13 @@
 #include "dijkstras.h"
 
 vector<int> dijkstraShortestPath(Graph& graph, int source, vector<int>& previous) {
-    int numVertices = graph.size();
+    int numVertices = graph.numVertices;
     vector<int> distances(numVertices, INF);
     vector<bool> visited(numVertices, false);
+
     distances[source] = 0;
-    previous[source] = -1;
+    previous.resize(numVertices, -1);
+   
     priority_queue<pair<int, int>, vector<pair<int, int>>, greater<pair<int, int>>> minHeap;
     minHeap.push({0, source}); 
     while (!minHeap.empty()) {
@@ -14,7 +16,7 @@ vector<int> dijkstraShortestPath(Graph& graph, int source, vector<int>& previous
         if (visited[u]) continue;
         visited[u] = true;
         for (const Edge& edge : graph[u]) {
-            int v = edge.dest;
+            int v = edge.dst;
             int weight = edge.weight;
 
             if (!visited[v] && distances[u] + weight < distances[v]) {
@@ -26,6 +28,7 @@ vector<int> dijkstraShortestPath(Graph& graph, int source, vector<int>& previous
     }
     return distances;
 }
+
 
 vector<int> extract_shortest_path(const vector<int>& /*distances*/, const vector<int>& previous, int destination) {
     vector<int> path;
