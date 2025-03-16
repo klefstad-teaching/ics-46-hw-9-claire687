@@ -42,12 +42,10 @@ void error(string word1, string word2, string msg){
 bool edit_distance_within(const std::string& str1, const std::string& str2, int d) {
     int len1 = str1.size(), len2 = str2.size();
     if (std::abs(len1 - len2) > d) return false;
-
     int diff_count = 0, pos1 = 0, pos2 = 0;
     while (pos1 < len1 && pos2 < len2) {
         if (str1[pos1] != str2[pos2]) {
             if (++diff_count > d) return false;
-
             if (len1 > len2) ++pos1;
             else if (len1 < len2) ++pos2;
             else { ++pos1; ++pos2; }
