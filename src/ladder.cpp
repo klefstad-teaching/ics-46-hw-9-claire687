@@ -7,19 +7,30 @@ void error(string word1, string word2, string msg){
     cerr << "Error: " << msg << " (" << word1 << " -> " << word2 << ")" << endl;
 }
 
+bool edit_distance_within(const std::string& str1, const std::string& str2, int d);
+    int len1 = str1.length(), len2 = str2.length();
+    if (abs(len1 - len2) > max_diff) return false;
+    int differences = 0, idx1 = 0, idx2 = 0;
+    while (idx1 < len1 && idx2 < len2) {
+        if (str1[idx1] != str2[idx2]) {
+            differences++;
+            if (differences > max_diff) return false;
 
-bool edit_distance_within(const std::string& str1, const std::string& str2, int d){
-    int len1 = str1.length();
-    int len2 = str2.length();
-    if (abs(len1 - len2) > d) return false;
-
-    int dif_count = 0;
-    for(size_t i = 0; i < str1.length(); i++){
-        dif_count++;
-        if (dif_count > d) return false;
+            if (len1 > len2) {
+                idx1++;
+            } else if (len1 < len2) {
+                idx2++; 
+            } else {
+                idx1++; idx2++;
+            }
+        } else {
+            idx1++; idx2++;
+        }
     }
-    return dif_count == d;
+
+    return (differences + (len1 - idx1) + (len2 - idx2)) <= max_diff;
 }
+
 
 
 
@@ -82,7 +93,7 @@ void load_words(set<string> & word_list, const string& file_name) {
 
 void print_word_ladder(const vector<string>& ladder) {
     if (ladder.empty()) {
-        cout << "ladder empty" << endl;
+        cout << "No word ladder found." << endl;
         return;
     }
 
