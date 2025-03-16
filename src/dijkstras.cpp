@@ -13,7 +13,7 @@ vector<int> dijkstraShortestPath(Graph& graph, int source, vector<int>& previous
         minHeap.pop();
         if (visited[u]) continue;
         visited[u] = true;
-        for (const Edge& edge : graph.adjacencyList[u]) {
+        for (const Edge& edge : graph[u]) {
             int v = edge.dest;
             int weight = edge.weight;
 

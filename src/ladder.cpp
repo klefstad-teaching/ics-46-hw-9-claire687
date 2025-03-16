@@ -31,7 +31,7 @@ vector<string> generate_word_ladder(const string& begin_word, const string& end_
     queue<vector<string>> ladder_queue;
     ladder_queue.push({begin_word});
 
-    unordered_set<string> visited;
+    set<string> visited;
     visited.insert(begin_word);
 
     while(!ladder_queue.empty()){
