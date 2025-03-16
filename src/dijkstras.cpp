@@ -50,7 +50,7 @@ void print_path(const vector<int>& v, int total) {
         return;
     }
     
-    std::cout << "\nTotal cost is " << total_cost << "\n";
+    std::cout << "\nTotal cost is " << total << "\n";
     
     for (size_t i = 0; i < path.size(); ++i) {
         if (i > 0) std::cout << " -> ";
