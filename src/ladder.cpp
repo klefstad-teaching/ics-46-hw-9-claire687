@@ -7,7 +7,8 @@ void error(string word1, string word2, string msg){
     cerr << "Error: " << msg << " (" << word1 << " -> " << word2 << ")" << endl;
 }
 
-bool edit_distance_within(const std::string& str1, const std::string& str2, int d);
+
+bool edit_distance_within(const std::string& str1, const std::string& str2, int d){
     int len1 = str1.length(), len2 = str2.length();
     if (abs(len1 - len2) > max_diff) return false;
     int differences = 0, idx1 = 0, idx2 = 0;
@@ -27,9 +28,9 @@ bool edit_distance_within(const std::string& str1, const std::string& str2, int 
             idx1++; idx2++;
         }
     }
-
     return (differences + (len1 - idx1) + (len2 - idx2)) <= max_diff;
 }
+
 
 
 
