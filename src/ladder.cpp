@@ -9,29 +9,35 @@ void error(string word1, string word2, string msg){
 
 
 bool edit_distance_within(const std::string& str1, const std::string& str2, int d){
-    int len1 = str1.length(), len2 = str2.length();
-    if (abs(len1 - len2) > d) return false;
-    int differences = 0, idx1 = 0, idx2 = 0;
+    int len1 = str1.length();
+    int len2 = str2.length();
+    int differences = 0;
+    int idx1 = 0;
+    int idx2 = 0;
+      if (abs(len1 - len2) > d){
+        return false;
+    }
     while (idx1 < len1 && idx2 < len2) {
         if (str1[idx1] != str2[idx2]) {
             differences++;
-            if (differences > d) return false;
-
+            if (differences > d) {
+                return false;
+            }
             if (len1 > len2) {
                 idx1++;
             } else if (len1 < len2) {
                 idx2++; 
             } else {
-                idx1++; idx2++;
+                idx1++; 
+                idx2++;
             }
         } else {
-            idx1++; idx2++;
+            idx1++; 
+            idx2++;
         }
     }
     return (differences + (len1 - idx1) + (len2 - idx2)) <= d;
 }
-
-
 
 
 
