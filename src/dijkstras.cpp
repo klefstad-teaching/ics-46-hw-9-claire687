@@ -42,22 +42,41 @@ vector<int> dijkstra_shortest_path(const Graph& G, int source, vector<int>& prev
 //     return path;
 // }
 
+// vector<int> extract_shortest_path(const vector<int>& distances, 
+//                                   const vector<int>& previous, 
+//                                   int destination) {
+//     (void)distances;
+
+//     if (destination < 0 || destination >= static_cast<int>(previous.size()) || previous[destination] == -1) {
+//         return {};
+//     }
+
+//     vector<int> path;
+//     for (int current = destination; current != -1; current = previous[current]) {
+//         path.push_back(current);
+//     }
+//     reverse(path.begin(), path.end());
+//     return path;
+// }
+
 vector<int> extract_shortest_path(const vector<int>& distances, 
                                   const vector<int>& previous, 
                                   int destination) {
-    (void)distances;
-
+    (void)distances; 
+    
     if (destination < 0 || destination >= static_cast<int>(previous.size()) || previous[destination] == -1) {
         return {};
     }
 
-    vector<int> path;
-    for (int current = destination; current != -1; current = previous[current]) {
-        path.push_back(current);
+    vector<int> path_sequence;
+    for (int node = destination; node != -1; node = previous[node]) {
+        path_sequence.emplace_back(node);
     }
-    reverse(path.begin(), path.end());
-    return path;
+
+    std::reverse(path_sequence.begin(), path_sequence.end());
+    return path_sequence;
 }
+
 
 
 
